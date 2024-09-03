@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>MPETTS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/cayman.css">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">MPETTS:CONTROLLABLE EMOTION TEXT-TO-SPEECH USING MULTIMODAL PROMPT</h1>
+      <a href="#" class="btn">Paper</a>
+      <a href="#" class="btn">Project</a>
+      <!-- <a href="#" class="btn">Download .zip</a>
+      <a href="#" class="btn">Download .tar.gz</a> -->
+    </section>
+
+
+
+    <section class="main-content">
+      <h1 id="abstract">Abstract</h1>
+      <p>Text-to-Speech (TTS) system based on deep learning has witnessed significant progress. The naturalness and similarity of speech synthesized by the general TTS systems are close to human speech. Research on zero-shot TTS has become a more challenging speech generation task, but current models lack flexible control over emotional information. This paper proposes a controllable emotional TTS Zero-Shot  system based on multi-modal prompt, MPE-TTS, which allows prompts of both natural language description and reference speech to control the emotion of synthesized speech. Firstly, we introduce the pretrained Emotion2Vec as the emotion feature extractor and construct a multi-modal emotion dataset for training. Then,we propose a multi-modal emotion encoder to extract the emotion information from the prompts. Finally, we introduce a prosody predictor module based on an autoregressive transformer to predict the prosody and use a diffusion-based acoustic model to synthesize speech. The subjective and objective experiments show that the proposed model achieves flexible emotional control while ensuring the naturalness of synthesized speech, expanding the application scenarios of TTS systems. Besides, this method can be easily extended to other TTS systems.</p>
+      
+
+      <h2 id="speech-based-emotion-control">Emotion Control Based On Speech Prompt</h2>
+      <h4 id="note">( Note that: in the 'Ours w/o MPEE', we replaced the proposed MPEE  with the AMPE of MM-TTS ) </h4>
+      <table>
+        <thead>
+          <tr>
+            <th><center> Speech Prompt </center></th>
+            <th><center> Text </center></th>
+            <th><center> GenerSpeech </center></th>
+            <th><center> Meta-StyleSpeech </center></th>
+            <th><center> MM-TTS </center></th>
+            <th><center> Ours w/o MPEE </center></th>
+            <th><center> Ours w/o ECL </center></th>
+            <th><center> Ours </center></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><audio src="samples/speech-based/0/Ref.wav" controls="" preload=""></audio></td>
+            <td>don't ask me to carry an oily rag like that.</td>
+            <td><audio src="samples/speech-based/0/Meta.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/speech-based/0/Gener.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/speech-based/0/MMTTS.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/speech-based/0/Ours_wo_MPEE.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/speech-based/0/Ours_wo_ECL.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/speech-based/0/Ours.wav" controls="" preload=""></audio></td>
+          </tr>
+          <tr>
+            <td><audio src="samples/speech-based/1/Ref.wav" controls="" preload=""></audio></td>
+            <td>she had your dark suit in greasy wash water all year.</td>
+            <td><audio src="samples/speech-based/1/Meta.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/speech-based/1/Gener.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/speech-based/1/MMTTS.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/speech-based/1/Ours_wo_MPEE.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/speech-based/1/Ours_wo_ECL.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/speech-based/1/Ours.wav" controls="" preload=""></audio></td>
+          </tr>
+          <tr>
+            <td><audio src="samples/speech-based/2/Ref.wav" controls="" preload=""></audio></td>
+            <td>he ate four extra eggs for breakfast.</td>
+            <td><audio src="samples/speech-based/2/Meta.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/speech-based/2/Gener.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/speech-based/2/MMTTS.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/speech-based/2/Ours_wo_MPEE.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/speech-based/2/Ours_wo_ECL.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/speech-based/2/Ours.wav" controls="" preload=""></audio></td>
+          </tr>
+          <tr>
+            <td><audio src="samples/speech-based/3/Ref.wav" controls="" preload=""></audio></td>
+            <td>he ate four extra eggs for breakfast.</td>
+            <td><audio src="samples/speech-based/3/Meta.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/speech-based/3/Gener.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/speech-based/3/MMTTS.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/speech-based/3/Ours_wo_MPEE.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/speech-based/3/Ours_wo_ECL.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/speech-based/3/Ours.wav" controls="" preload=""></audio></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="image-based-emotion-control">Emotion Control Based On Image Prompt</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th><center> Image Prompt </center></th>
+            <th><center> Text </center></th>
+            <th><center> MM-TTS </center></th>
+            <th><center> Ours w/o MPEE </center></th>
+            <th><center> Ours w/o ECL </center></th>
+            <th><center> Ours </center></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><img src="samples/image-based/0/M003_angry.jpg" alt="" /></td>
+            <td>In many of his poems death comes by train a strongly evocative visual image.</td>
+            <td><audio src="samples/image-based/0/MMTTS.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/image-based/0/Ours_wo_MPEE.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/image-based/0/Ours_wo_ECL.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/image-based/0/Ours.wav" controls="" preload=""></audio></td>
+          </tr>
+          <tr>
+            <td><img src="samples/image-based/1/M007_angry.jpg" alt="" /></td>
+            <td>In many of his poems death comes by train a strongly evocative visual image.</td>
+            <td><audio src="samples/image-based/1/MMTTS.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/image-based/1/Ours_wo_MPEE.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/image-based/1/Ours_wo_ECL.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/image-based/1/Ours.wav" controls="" preload=""></audio></td>
+          </tr>
+          <tr>
+            <td><img src="samples/image-based/2/0.jpg" alt="" /></td>
+            <td>In many of his poems death comes by train a strongly evocative visual image.</td>
+            <td><audio src="samples/image-based/2/MMTTS.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/image-based/2/Ours_wo_MPEE.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/image-based/2/Ours_wo_ECL.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/image-based/2/Ours.wav" controls="" preload=""></audio></td>
+          </tr>
+          <tr>
+            <td><img src="samples/image-based/3/W016_fear.jpg" alt="" /></td>
+            <td>In many of his poems death comes by train a strongly evocative visual image.</td>
+            <td><audio src="samples/image-based/3/MMTTS.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/image-based/3/Ours_wo_MPEE.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/image-based/3/Ours_wo_ECL.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/image-based/3/Ours.wav" controls="" preload=""></audio></td>
+          </tr>
+
+        </tbody>
+      </table>
+
+      <h2 id="text-based-emotion-control">Emotion Control Based On Text Prompt</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th><center> Text Prompt </center></th>
+            <th><center> Text </center></th>
+            <th><center> MM-TTS </center></th>
+            <th><center> Ours w/o MPEE </center></th>
+            <th><center> Ours w/o ECL </center></th>
+            <th><center> Ours </center></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>A man talks in a tone of happiness.</td>
+            <td>Its yellow bristles, rather a mane than a head of hair, covered and concealed a lofty brow, evidently made to contain thought.</td>
+            <td><audio src="samples/text-based/0/MMTTS.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/text-based/0/Ours_wo_MPEE.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/text-based/0/Ours_wo_ECL.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/text-based/0/Ours.wav" controls="" preload=""></audio></td>
+          </tr>
+          <tr>
+            <td>A man voices with a pitch of intense gloom.</td>
+            <td>When he looked over his shoulder she was lacing her boots</td>
+            <td><audio src="samples/text-based/1/MMTTS.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/text-based/1/Ours_wo_MPEE.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/text-based/1/Ours_wo_ECL.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/text-based/1/Ours.wav" controls="" preload=""></audio></td>
+          </tr>
+          <tr>
+            <td>A man speaks with a tone of extreme anger..wav</td>
+            <td>I, whom the Kshatriyas know as Kerim Shah, a prince from Iranistan, am no greater a masquerader than most men.</td>
+            <td><audio src="samples/text-based/2/MMTTS.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/text-based/2/Ours_wo_MPEE.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/text-based/2/Ours_wo_ECL.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/text-based/2/Ours.wav" controls="" preload=""></audio></td>
+          </tr>
+          <tr>
+            <td>There’s an intense terror in the man’s tone.</td>
+            <td>“Why don’t you move the pony?</td>
+            <td><audio src="samples/text-based/3/MMTTS.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/text-based/3/Ours_wo_MPEE.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/text-based/3/Ours_wo_ECL.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/text-based/3/Ours.wav" controls="" preload=""></audio></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <footer class="site-footer">
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+
+    </section>
+
+  </body>
+</html>
