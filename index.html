@@ -2,7 +2,7 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>MPETTS</title>
+    <title>FCConDubber</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <link rel="stylesheet" href="css/normalize.css">
@@ -11,7 +11,10 @@
   </head>
   <body>
     <section class="page-header">
-      <h1 class="project-name">MPETTS:CONTROLLABLE EMOTION TEXT-TO-SPEECH USING MULTIMODAL PROMPT</h1>
+      <h1 class="project-name" style="font-size: 3.0rem;">FCConDubber</h1>
+      <h1 class="project-name">Fine And Coarse Grained Prosody Alignment For Expressive Video Dubbing via
+        Contrastive Speech-Motion
+        Pretraining</h1>
       <a href="#" class="btn">Paper</a>
       <a href="#" class="btn">Project</a>
       <!-- <a href="#" class="btn">Download .zip</a>
@@ -22,8 +25,16 @@
 
     <section class="main-content">
       <h1 id="abstract">Abstract</h1>
-      <p>Text-to-Speech (TTS) system based on deep learning has witnessed significant progress. The naturalness and similarity of speech synthesized by the general TTS systems are close to human speech. Research on zero-shot TTS has become a more challenging speech generation task, but current models lack flexible control over emotional information. This paper proposes a controllable emotional TTS Zero-Shot  system based on multi-modal prompt, MPE-TTS, which allows prompts of both natural language description and reference speech to control the emotion of synthesized speech. Firstly, we introduce the pretrained Emotion2Vec as the emotion feature extractor and construct a multi-modal emotion dataset for training. Then,we propose a multi-modal emotion encoder to extract the emotion information from the prompts. Finally, we introduce a prosody predictor module based on an autoregressive transformer to predict the prosody and use a diffusion-based acoustic model to synthesize speech. The subjective and objective experiments show that the proposed model achieves flexible emotional control while ensuring the naturalness of synthesized speech, expanding the application scenarios of TTS systems. Besides, this method can be easily extended to other TTS systems.</p>
-      
+      <!-- <p>Text-to-Speech (TTS) system based on deep learning has witnessed significant progress. The naturalness and similarity of speech synthesized by the general TTS systems are close to human speech. Research on zero-shot TTS has become a more challenging speech generation task, but current models lack flexible control over emotional information. This paper proposes a controllable emotional TTS Zero-Shot  system based on multi-modal prompt, MPE-TTS, which allows prompts of both natural language description and reference speech to control the emotion of synthesized speech. Firstly, we introduce the pretrained Emotion2Vec as the emotion feature extractor and construct a multi-modal emotion dataset for training. Then,we propose a multi-modal emotion encoder to extract the emotion information from the prompts. Finally, we introduce a prosody predictor module based on an autoregressive transformer to predict the prosody and use a diffusion-based acoustic model to synthesize speech. The subjective and objective experiments show that the proposed model achieves flexible emotional control while ensuring the naturalness of synthesized speech, expanding the application scenarios of TTS systems. Besides, this method can be easily extended to other TTS systems.</p> -->
+      <p>Automatic Video Dubbing (AVD) aims to synthesize speech that matches a character’s speaking style and emotion in silent
+      video clips. However, existing approaches rely on attention mechanisms to learn cross-modal prosodic alignment
+      implicitly, making it challenging to capture subtle prosodic variations and impacting the overall naturalness and
+      expressiveness of the output. In this paper, we propose FCConDubber, a novel dubbing model that generates high-fidelity
+      and expressive speech by utilizing a pre-trained prosodic alignment framework. The model incorporates a contrastive
+      speech-motion pre-training framework to learn fine-grained temporal prosodic alignment and coarse-grained global style
+      information. Experiments on the MEAD dataset demonstrate that FCConDubber significantly outperforms baseline models in
+      speech synthesis quality and prosody reconstruction, successfully capturing and reproducing the speaker’s prosodic
+      characteristics in the video.</p>
 
       <h2 id="speech-based-emotion-control">Emotion Control Based On Speech Prompt</h2>
       <h4 id="note">( Note that: in the 'Ours w/o MPEE', we replaced the proposed MPEE  with the AMPE of MM-TTS ) </h4>
