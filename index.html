@@ -36,163 +36,116 @@
       speech synthesis quality and prosody reconstruction, successfully capturing and reproducing the speaker’s prosodic
       characteristics in the video.</p>
 
-      <h2 id="speech-based-emotion-control">Emotion Control Based On Speech Prompt</h2>
-      <h4 id="note">( Note that: in the 'Ours w/o MPEE', we replaced the proposed MPEE  with the AMPE of MM-TTS ) </h4>
+      <h2 id="speech-based-emotion-control">Proposed Method</h2>
+      <p>Figure 1 illustrates the primary architecture of the proposed model, which consists of four modules. 
+        <ol>
+          <li><strong>Contrastive Speech-Motion Pretraining(CSMP)</strong> a multi-grained prosodic alignment framework based on contrastive learning. It
+          incorporates a speech prosody encoder and a visual prosody encoder to extract prosodic feature representations from
+          speech and facial movements respectively. CSMP then employs contrastive learning to align the speech prosody and facial
+          motion information.</li>
+          <li>Acoustic Model: converting textual semantic information into corresponding mel spectrograms.</li>
+          <li>A mel-spectrogram refiner based on rectified flow, which makes the generated mel spectrogram closer to the ground truth.</li>
+          <li>A vocoder that transforms the mel spectrogram into audio waveforms.</li>
+        </ol> 
+      </p>
+        <!-- 1) Contrastive Speech-Motion Pretraining(CSMP): a multi-grained prosodic alignment framework based on contrastive learning. It -->
+      <!-- incorporates a speech prosody encoder and a visual prosody encoder to extract prosodic feature representations from -->
+      <!-- speech and facial movements respectively. CSMP then employs contrastive learning to align the speech prosody and facial -->
+      <!-- motion information. 2) MelSpectrogram Generator: converting textual semantic information into corresponding mel -->
+      <!-- spectrograms. 3) A mel-spectrogram refiner based on rectified flow, which makes the generated mel spectrogram closer to -->
+      <!-- the ground truth. 4) A vocoder that transforms the mel spectrogram into audio waveforms. </p> -->
+      
+      <img src="./assets/model.png" alt="Figure 1" style="width: 100%; height: auto;">
+
+      <!-- <h4 id="note">( Note that: in the 'Ours w/o MPEE', we replaced the proposed MPEE  with the AMPE of MM-TTS ) </h4> -->
+      <h2>Comparisons</h2>
       <table>
         <thead>
           <tr>
-            <th><center> Speech Prompt </center></th>
-            <th><center> Text </center></th>
-            <th><center> GenerSpeech </center></th>
-            <th><center> Meta-StyleSpeech </center></th>
-            <th><center> MM-TTS </center></th>
-            <th><center> Ours w/o MPEE </center></th>
-            <th><center> Ours w/o ECL </center></th>
+            <th><center> Grount truth </center></th>
+            <th><center> Reconstruction </center></th>
+            <th><center> Nerual Dubber </center></th>
+            <th><center> 3D-VD </center></th>
             <th><center> Ours </center></th>
           </tr>
         </thead>
+
         <tbody>
           <tr>
-            <td><audio src="samples/speech-based/0/Ref.wav" controls="" preload=""></audio></td>
-            <td>don't ask me to carry an oily rag like that.</td>
-            <td><audio src="samples/speech-based/0/Meta.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/speech-based/0/Gener.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/speech-based/0/MMTTS.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/speech-based/0/Ours_wo_MPEE.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/speech-based/0/Ours_wo_ECL.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/speech-based/0/Ours.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/gt/0.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/reconstruction/0.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/nerual_dubber/0.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/3d_vd/0.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/ours/0.wav" controls="" preload=""></audio></td>
+          </tr>
+          <!-- 剩下9个 -->
+          <tr>
+            <td><audio src="samples/gt/1.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/reconstruction/1.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/nerual_dubber/1.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/3d_vd/1.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/ours/1.wav" controls="" preload=""></audio></td>
           </tr>
           <tr>
-            <td><audio src="samples/speech-based/1/Ref.wav" controls="" preload=""></audio></td>
-            <td>she had your dark suit in greasy wash water all year.</td>
-            <td><audio src="samples/speech-based/1/Meta.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/speech-based/1/Gener.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/speech-based/1/MMTTS.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/speech-based/1/Ours_wo_MPEE.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/speech-based/1/Ours_wo_ECL.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/speech-based/1/Ours.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/gt/2.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/reconstruction/2.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/nerual_dubber/2.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/3d_vd/2.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/ours/2.wav" controls="" preload=""></audio></td>
           </tr>
           <tr>
-            <td><audio src="samples/speech-based/2/Ref.wav" controls="" preload=""></audio></td>
-            <td>he ate four extra eggs for breakfast.</td>
-            <td><audio src="samples/speech-based/2/Meta.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/speech-based/2/Gener.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/speech-based/2/MMTTS.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/speech-based/2/Ours_wo_MPEE.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/speech-based/2/Ours_wo_ECL.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/speech-based/2/Ours.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/gt/3.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/reconstruction/3.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/nerual_dubber/3.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/3d_vd/3.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/ours/3.wav" controls="" preload=""></audio></td>
           </tr>
           <tr>
-            <td><audio src="samples/speech-based/3/Ref.wav" controls="" preload=""></audio></td>
-            <td>he ate four extra eggs for breakfast.</td>
-            <td><audio src="samples/speech-based/3/Meta.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/speech-based/3/Gener.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/speech-based/3/MMTTS.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/speech-based/3/Ours_wo_MPEE.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/speech-based/3/Ours_wo_ECL.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/speech-based/3/Ours.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/gt/4.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/reconstruction/4.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/nerual_dubber/4.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/3d_vd/4.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/ours/4.wav" controls="" preload=""></audio></td>
+          </tr>
+          <tr>
+            <td><audio src="samples/gt/5.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/reconstruction/5.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/nerual_dubber/5.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/3d_vd/5.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/ours/5.wav" controls="" preload=""></audio></td>
+          </tr>
+          <tr>
+            <td><audio src="samples/gt/6.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/reconstruction/6.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/nerual_dubber/6.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/3d_vd/6.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/ours/6.wav" controls="" preload=""></audio></td>
+          </tr>
+          <tr>
+            <td><audio src="samples/gt/7.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/reconstruction/7.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/nerual_dubber/7.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/3d_vd/7.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/ours/7.wav" controls="" preload=""></audio></td>
+          </tr>
+          <tr>
+            <td><audio src="samples/gt/8.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/reconstruction/8.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/nerual_dubber/8.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/3d_vd/8.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/ours/8.wav" controls="" preload=""></audio></td>
+          </tr>
+          <tr>
+            <td><audio src="samples/gt/9.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/reconstruction/9.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/nerual_dubber/9.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/3d_vd/9.wav" controls="" preload=""></audio></td>
+            <td><audio src="samples/ours/9.wav" controls="" preload=""></audio></td>
           </tr>
         </tbody>
       </table>
 
-      <h2 id="image-based-emotion-control">Emotion Control Based On Image Prompt</h2>
-
-      <table>
-        <thead>
-          <tr>
-            <th><center> Image Prompt </center></th>
-            <th><center> Text </center></th>
-            <th><center> MM-TTS </center></th>
-            <th><center> Ours w/o MPEE </center></th>
-            <th><center> Ours w/o ECL </center></th>
-            <th><center> Ours </center></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><img src="samples/image-based/0/M003_angry.jpg" alt="" /></td>
-            <td>In many of his poems death comes by train a strongly evocative visual image.</td>
-            <td><audio src="samples/image-based/0/MMTTS.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/image-based/0/Ours_wo_MPEE.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/image-based/0/Ours_wo_ECL.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/image-based/0/Ours.wav" controls="" preload=""></audio></td>
-          </tr>
-          <tr>
-            <td><img src="samples/image-based/1/M007_angry.jpg" alt="" /></td>
-            <td>In many of his poems death comes by train a strongly evocative visual image.</td>
-            <td><audio src="samples/image-based/1/MMTTS.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/image-based/1/Ours_wo_MPEE.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/image-based/1/Ours_wo_ECL.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/image-based/1/Ours.wav" controls="" preload=""></audio></td>
-          </tr>
-          <tr>
-            <td><img src="samples/image-based/2/0.jpg" alt="" /></td>
-            <td>In many of his poems death comes by train a strongly evocative visual image.</td>
-            <td><audio src="samples/image-based/2/MMTTS.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/image-based/2/Ours_wo_MPEE.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/image-based/2/Ours_wo_ECL.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/image-based/2/Ours.wav" controls="" preload=""></audio></td>
-          </tr>
-          <tr>
-            <td><img src="samples/image-based/3/W016_fear.jpg" alt="" /></td>
-            <td>In many of his poems death comes by train a strongly evocative visual image.</td>
-            <td><audio src="samples/image-based/3/MMTTS.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/image-based/3/Ours_wo_MPEE.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/image-based/3/Ours_wo_ECL.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/image-based/3/Ours.wav" controls="" preload=""></audio></td>
-          </tr>
-
-        </tbody>
-      </table>
-
-      <h2 id="text-based-emotion-control">Emotion Control Based On Text Prompt</h2>
-
-      <table>
-        <thead>
-          <tr>
-            <th><center> Text Prompt </center></th>
-            <th><center> Text </center></th>
-            <th><center> MM-TTS </center></th>
-            <th><center> Ours w/o MPEE </center></th>
-            <th><center> Ours w/o ECL </center></th>
-            <th><center> Ours </center></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>A man talks in a tone of happiness.</td>
-            <td>Its yellow bristles, rather a mane than a head of hair, covered and concealed a lofty brow, evidently made to contain thought.</td>
-            <td><audio src="samples/text-based/0/MMTTS.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/text-based/0/Ours_wo_MPEE.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/text-based/0/Ours_wo_ECL.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/text-based/0/Ours.wav" controls="" preload=""></audio></td>
-          </tr>
-          <tr>
-            <td>A man voices with a pitch of intense gloom.</td>
-            <td>When he looked over his shoulder she was lacing her boots</td>
-            <td><audio src="samples/text-based/1/MMTTS.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/text-based/1/Ours_wo_MPEE.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/text-based/1/Ours_wo_ECL.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/text-based/1/Ours.wav" controls="" preload=""></audio></td>
-          </tr>
-          <tr>
-            <td>A man speaks with a tone of extreme anger..wav</td>
-            <td>I, whom the Kshatriyas know as Kerim Shah, a prince from Iranistan, am no greater a masquerader than most men.</td>
-            <td><audio src="samples/text-based/2/MMTTS.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/text-based/2/Ours_wo_MPEE.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/text-based/2/Ours_wo_ECL.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/text-based/2/Ours.wav" controls="" preload=""></audio></td>
-          </tr>
-          <tr>
-            <td>There’s an intense terror in the man’s tone.</td>
-            <td>“Why don’t you move the pony?</td>
-            <td><audio src="samples/text-based/3/MMTTS.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/text-based/3/Ours_wo_MPEE.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/text-based/3/Ours_wo_ECL.wav" controls="" preload=""></audio></td>
-            <td><audio src="samples/text-based/3/Ours.wav" controls="" preload=""></audio></td>
-          </tr>
-        </tbody>
-      </table>
+      
 
       <footer class="site-footer">
         <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
